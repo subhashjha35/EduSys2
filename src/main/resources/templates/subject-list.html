@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html layout:decorate="layouts/common">
+    <head>
+        <title>Content page</title>
+    </head>
+    <body style="background-color:#e9ecef">
+        <div layout:fragment="content" class="card col-md-8 offset-md-2 mt-md-5 p-3">
+                <a style="position:absolute;right:30px"class="btn btn-primary" href="#" th:href="@{/subjects/new}" role="button">+ Subject</a>
+            <h2 class="display-5 my-3">My Subjects</h2>
+            <div class="container">
+                <table class="table">
+                    <tr>
+                        <th>Subject Name</th>
+                        <th>Published?</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr th:each="sub: ${subjects}" >
+                        <td>
+                            <a th:href="@{/subjects/{id}(id=${sub.id})}" th:text="${sub.name}"></a>
+                        </td>
+                        <td><span th:text="${(sub.public_flag)?'Yes':'No'}"></span></td>
+                        <td>
+                            <a style="min-width:100px" class="btn btn-sm btn-success" th:if="${(!sub.public_flag)}" th:href="${'subjects/edit/'+sub.id+'/publish/true'}">Publish</a>
+                            <a style="min-width:100px" class="btn btn-sm btn-warning" th:if="${(sub.public_flag)}" th:href="${'subjects/edit/'+sub.id+'/publish/false'}">Unpublish</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

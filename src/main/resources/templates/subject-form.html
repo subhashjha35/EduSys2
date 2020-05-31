@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html layout:decorate="layouts/common">
+    <head>
+        <title>Content page</title>
+    </head>
+    <body style="background-color:#e9ecef">
+        <div layout:fragment="content" class="card col-md-4 offset-md-4 mt-md-5 p-3">
+            
+                <h2 class="display-5 my-3">New Subject</h2>
+
+            <form action="" novalidate th:action="@{/subjects/new}" th:object="${subject}" method="post">
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+                    <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>    
+                </div>
+                <div th:if="${#fields.hasErrors('*')}">Entry has errors!</div>
+                <div class="form-group">
+                    <label for="title">Name</label>
+                    <input th:field="*{name}" type="text" class="form-control" id="title" placeholder="Subject Name" required th:errorclass="is-invalid">
+                    <div class="invalid-feedback" th:errors="*{name}">
+                        Please provide a Subject Name!
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="description">Code</label>
+                    <input type="text" th:field="*{code}" class="form-control" id="description" rows="5" required th:errorclass="is-invalid">
+                    <div class="invalid-feedback" th:errors="*{code}">
+                        Please provide a code!
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="credit">Credit</label>
+                    <input th:field="*{credit}" type="number" class="form-control" id="credit" placeholder="Credits" required th:errorclass="is-invalid">
+                    <div class="invalid-feedback" th:errors="*{credit}">
+                        Please provide a credit!
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Add</button>
+                <input type="submit" class="btn btn-success" formaction="?publish=true" value="Add & Publish">
+            </form>
+        </div>
+    </body>
+</html>

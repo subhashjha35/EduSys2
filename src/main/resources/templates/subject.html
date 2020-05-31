@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html layout:decorate="layouts/common">
+    <head>
+        <title>Content page</title>
+    </head>
+    <body style="background-color:#e9ecef">
+        <div layout:fragment="content" class="col-md-6 offset-md-3 card mt-md-5">
+
+            <h3 class="display-5 my-3">Subject Details</h3>
+            
+            <table class="table">
+                <tr>
+                    <td>Name</td>
+                    <td th:text="${subject.name}"></td>
+                </tr>
+                <tr>
+                    <td>Code</td>
+                    <td th:text="${subject.code}"></td>
+                </tr>
+                <tr>
+                    <td>Credit</td>
+                    <td th:text="${subject.credit}"></td>
+                </tr>
+                <tr>
+                    <td>Visibility Status</td>
+                    <td><span class="alert alert-warning p-1" th:text="${(subject.public_flag)?'Public':'Private'}"></span></td>
+                </tr>
+            </table>
+
+        </div>
+    </body>
+</html>
